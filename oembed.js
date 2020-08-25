@@ -36,7 +36,10 @@ function oembed(url, options, endpoint, mainCallback, _canonical) {
           }
         }, function(err, response, body) {
         if (err) {
+          console.log('this is an error, maybe because of the user-agent?')
+          console.error(err)
           return callback(err);
+          
         }
         var $ = cheerio.load(body);
 

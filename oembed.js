@@ -103,11 +103,16 @@ function oembed(url, options, endpoint, mainCallback, _canonical) {
         delete parsed.search;
         oUrl = urls.format(parsed);
       }
+      console.log('oUrl', oUrl)
       return request(oUrl, {
           headers: {
             'User-Agent': 'oembetter'
           }
         }, function(err, response, body) {
+
+          console.log('err', err)
+          console.log('response', response)
+          console.log('body', body)
         if (err || (response.statusCode >= 400)) {
           return callback(err || response.statusCode);
         }

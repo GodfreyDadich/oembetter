@@ -31,6 +31,8 @@ module.exports = function(options) {
     var response;
     var warnings = [];
     var parsed = urls.parse(url);
+    console.log('parsed', parsed)
+    console.log('whitelist', self._whitelist)
     if (!parsed) {
       return callback(new Error('oembetter: invalid URL: ' + url));
     }
@@ -77,18 +79,21 @@ module.exports = function(options) {
           return before(url, options, response, function(err, _url, _options, _response) {
             // Nonfatal
             if (err) {
+              console.log('before err', err)
               warnings.push(err);
               return callback(null);
             }
             url = _url || url;
             options = _options || options;
             response = _response || response;
+            console.log('before response', response)
             return callback(null);
           });
         }, callback);
       },
       fetch: function(callback) {
         if (response) {
+          console.log('fetch never had a chance')
           // Preempted by a before
           return callback(null);
         }

@@ -40,6 +40,9 @@ function oembed(url, options, endpoint, mainCallback, _canonical) {
           console.error(err)
           return callback(err)
         }
+        console.log('err: ' + err)
+        console.log('response: ', response)
+        console.log('body: ', body)
         var $ = cheerio.load(body);
 
         // <link rel="alternate" type="application/json+oembed" href="http://www.youtube.com/oembed?format=json&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dzsl_auoGuy4" title="An Engineer&#39;s Guide to Cats 2.0 - The Sequel">
